@@ -1,0 +1,7 @@
+driverClassName=com.mysql.jdbc.Driver
+url=jdbc:mysql://127.0.0.1:3306/kcsj2?characterEncoding=utf-8
+username=root
+password=pswd
+initialSize=10
+maxActive=20
+maxWait=6000
