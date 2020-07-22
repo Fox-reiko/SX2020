@@ -2,17 +2,24 @@ package com.bood.form;
 
 public class User {
 	
+	private int uid;//用户的编号
 	private String username;//登录名账户
 	private String password;//密码
-	private int	power;//权限  1有  0无
-	
 	private String name;//姓名
 	private String sex;//性别
 	private int age;//年龄
 	private String boodType;//血型
 	private int delType;//0-不可用状态1-可用状态
+	private int	power;//权限  1有  0无
 	
 	//get set
+	
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -63,8 +70,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", power=" + power + ", name=" + name
-				+ ", sex=" + sex + ", age=" + age + ", boodType=" + boodType + ", delType=" + delType + "]";
+		return "User [uid=" + uid + ", username=" + username + ", password=" + password + ", power=" + power + ", name="
+				+ name + ", sex=" + sex + ", age=" + age + ", boodType=" + boodType + ", delType=" + delType + "]";
 	}
 	
 }

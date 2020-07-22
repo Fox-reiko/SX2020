@@ -13,7 +13,7 @@ public class LoginCheck {
 
 		try {
 //			User ret = 
-			link.queryForObject("select * from user where username=? and password=? and power= ?",
+			link.queryForObject("select * from user where username=? and password=? and power= ? and deltype = 1",
 					new BeanPropertyRowMapper<>(User.class), user.getUsername(), user.getPassword(), user.getPower());
 		} catch (Exception e) {
 //			System.out.println("0");

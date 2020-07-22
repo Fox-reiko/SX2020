@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import com.bood.form.User;
-import com.bood.page.HomePage;
+import com.bood.page.IndexPage;
 
 public class Login {
 	// 初始化字体
@@ -76,7 +76,7 @@ public class Login {
 		jb.setFont(f);
 		jf.add(jb);
 
-		//
+		//实体
 		User user = new User();
 		LoginCheck check = new LoginCheck();
 
@@ -90,23 +90,23 @@ public class Login {
 				if (name.getText().trim().equals("") || pasword.getText().trim().equals("")) {
 					JOptionPane.showMessageDialog(null, "用户名密码不允许为空", "出错提示", JOptionPane.ERROR_MESSAGE);
 				} else {
+					
+					//获取登录身份
 					if (cardtype.getSelectedItem().equals("献血用户"))
-						user.setPower(0);// 权限设置 0无
+						user.setPower(0);// 用户权限设置 0无
 					else
 						user.setPower(1);// 权限设置 1有 ,其他出错
-
+					//获取用户名 密码
 					user.setUsername(name.getText());
 					user.setPassword(pasword.getText());
-
+					
 					if (check.checkLogin(user)) {
 
 						jf.setVisible(false);// 关闭登录页
-						HomePage homePage = new HomePage();
-						if (user.getPower() == 0)// 下面调用用户界面
-							homePage.adminPage();
-						else
-							// 下面调用管理员界面
-							homePage.adminPage();
+						
+//						if (user.getPower() == 0)// 下面调用用户界面
+							new IndexPage(user.getUsername());
+//						else// 下面调用管理员界面
 
 					} else {
 						JOptionPane.showMessageDialog(null, "用户名或密码错误", "出错提示", JOptionPane.QUESTION_MESSAGE);
