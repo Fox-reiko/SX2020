@@ -13,8 +13,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import com.bood.adminpage.IndexAdminPage;
 import com.bood.form.User;
-import com.bood.page.IndexPage;
+import com.bood.userpage.IndexUserPage;
+
 
 public class Login {
 	// 初始化字体
@@ -33,6 +35,7 @@ public class Login {
 	JComboBox<String> cardtype = new JComboBox<>(new String[] { "献血用户", "管理员" });
 
 	JButton jb = new JButton("登录");
+	JButton reg = new JButton("注册");
 
 	// 登陆页面详细布局
 	private void loginPage() {
@@ -76,11 +79,26 @@ public class Login {
 		jb.setFont(f);
 		jf.add(jb);
 
-		//实体
+		// 注册 按钮 设置
+		reg.setBounds(500, 310, 60, 20);
+//		reg.setFont(f);
+		jf.add(reg);
+
+		// 实体
 		User user = new User();
 		LoginCheck check = new LoginCheck();
 
-		// 添加事件
+		// 注册按钮添加事件
+		reg.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Register();
+
+			}
+		});
+
+		// 登录按钮添加事件
 		jb.addActionListener(new ActionListener() {
 
 			@SuppressWarnings("deprecation")
@@ -90,23 +108,27 @@ public class Login {
 				if (name.getText().trim().equals("") || pasword.getText().trim().equals("")) {
 					JOptionPane.showMessageDialog(null, "用户名密码不允许为空", "出错提示", JOptionPane.ERROR_MESSAGE);
 				} else {
-					
-					//获取登录身份
+
+					// 获取登录身份
 					if (cardtype.getSelectedItem().equals("献血用户"))
 						user.setPower(0);// 用户权限设置 0无
 					else
 						user.setPower(1);// 权限设置 1有 ,其他出错
-					//获取用户名 密码
+					// 获取用户名 密码
 					user.setUsername(name.getText());
 					user.setPassword(pasword.getText());
-					
+
 					if (check.checkLogin(user)) {
 
 						jf.setVisible(false);// 关闭登录页
-						
-//						if (user.getPower() == 0)// 下面调用用户界面
-							new IndexPage(user.getUsername());
-//						else// 下面调用管理员界面
+
+						if (user.getPower() == 0) {// 下面调用用户界面
+							new IndexUserPage(user.getUsername());
+
+						} else {// 下面调用管理员界面
+							new IndexAdminPage(user.getUsername());
+
+						}
 
 					} else {
 						JOptionPane.showMessageDialog(null, "用户名或密码错误", "出错提示", JOptionPane.QUESTION_MESSAGE);

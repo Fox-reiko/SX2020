@@ -1,4 +1,4 @@
-package com.bood.page;
+package com.bood.adminpage;
 
 import java.awt.Font;
 import java.util.Vector;
@@ -8,10 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import com.bood.check.ShowPaperCc;
-import com.bood.check.ShowUserCc;
-
-public class PaperPage extends IndexPage{
+public class PaperPage extends IndexAdminPage{
 	
 	
 	Font d = new Font("楷体", Font.BOLD, 20);

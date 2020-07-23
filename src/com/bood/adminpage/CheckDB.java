@@ -1,4 +1,4 @@
-package com.bood.check;
+package com.bood.adminpage;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 

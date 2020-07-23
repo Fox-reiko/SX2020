@@ -1,4 +1,4 @@
-package com.bood.page;
+package com.bood.adminpage;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -10,18 +10,18 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
 
-public class IndexPage {
+public class IndexAdminPage {
 
 	Font d = new Font("楷体", Font.BOLD, 20);
 	Font x = new Font("楷体", Font.BOLD, 16);
 
-	public JFrame jf;
+	public JFrame jf;//公共的
 
 	private JMenuBar jb;
 	private JMenu f1, f2;// 一级菜单
 	private JMenuItem s1, s2, s3, s4;// 二级菜单
 
-	public IndexPage(String username) {
+	public IndexAdminPage(String username) {
 		indexInit();// 初始化页面
 		init(username);// 框架初始化
 		action(username);// 确定退出事件

@@ -8,7 +8,7 @@ public class User {
 	private String name;//姓名
 	private String sex;//性别
 	private int age;//年龄
-	private String boodType;//血型
+	private String boodType;//血型 AB A B O
 	private int delType;//0-不可用状态1-可用状态
 	private int	power;//权限  1有  0无
 	

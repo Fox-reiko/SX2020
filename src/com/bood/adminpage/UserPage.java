@@ -1,4 +1,4 @@
-package com.bood.page;
+package com.bood.adminpage;
 
 import java.awt.Font;
 import java.util.Vector;
@@ -8,10 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import com.bood.check.ShowGiftCc;
-import com.bood.check.ShowUserCc;
-
-public class UserPage extends IndexPage{
+public class UserPage extends IndexAdminPage{
 	
 	Font d = new Font("楷体", Font.BOLD, 20);
 	Font x = new Font("楷体", Font.BOLD, 16);
@@ -49,13 +46,18 @@ public class UserPage extends IndexPage{
 		JScrollPane jsp = new JScrollPane(jt);
 		jsp.setBounds(2, 100, 580, 120);
 		
+		JButton samP = new JButton("x查看用户血样本信息");
+		samP.setFont(x);
+		samP.setBounds(70, 230, 200, 20);
+		
 		JButton updateU = new JButton("x修改用户信息");
 		updateU.setFont(x);
-		updateU.setBounds(200, 230, 200, 20);
+		updateU.setBounds(330, 230, 150, 20);
 
 		jf.add(title);
 		jf.add(jsp);
 		jf.add(updateU);
+		jf.add(samP);
 
 		
 	}
