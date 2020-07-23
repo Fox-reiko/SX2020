@@ -1,6 +1,6 @@
 package com.bood.form;
 
-public class sample {
+public class Sample {
 	
 	private	int	sid;//样本的编号
 	private	int	uid;//样本人的编号

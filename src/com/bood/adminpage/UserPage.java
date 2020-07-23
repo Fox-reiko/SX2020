@@ -1,6 +1,8 @@
 package com.bood.adminpage;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -16,10 +18,10 @@ public class UserPage extends IndexAdminPage{
 	
 	public UserPage(String username) {
 		super(username);
-		showUser();
+		showUser(username);
 	}
 
-	private void showUser() {
+	private void showUser(String username) {
 
 
 		JLabel title = new JLabel("用户信息");
@@ -46,11 +48,11 @@ public class UserPage extends IndexAdminPage{
 		JScrollPane jsp = new JScrollPane(jt);
 		jsp.setBounds(2, 100, 580, 120);
 		
-		JButton samP = new JButton("x查看用户血样本信息");
+		JButton samP = new JButton("查看用户血样本信息");
 		samP.setFont(x);
 		samP.setBounds(70, 230, 200, 20);
 		
-		JButton updateU = new JButton("x修改用户信息");
+		JButton updateU = new JButton("修改用户信息");
 		updateU.setFont(x);
 		updateU.setBounds(330, 230, 150, 20);
 
@@ -58,7 +60,27 @@ public class UserPage extends IndexAdminPage{
 		jf.add(jsp);
 		jf.add(updateU);
 		jf.add(samP);
+		
+		samP.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jf.setVisible(false);
+				new ShowSample(username);
+				
+			}
+		});
+		
 
+		updateU.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jf.setVisible(false);
+				new AdminUpdateUserNews(username);
+				
+			}
+		});
 		
 	}
 

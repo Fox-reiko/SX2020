@@ -1,4 +1,4 @@
-package com.bood.userpage;
+package com.bood.adminpage;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,23 +12,29 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import com.bood.form.User;
-import com.bood.login.RegDao;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-public class ChangeUserNews extends IndexUserPage {
-	
+import com.bood.form.User;
+import com.bood.linkdb.JDBCUtils;
+import com.bood.login.RegDao;
+import com.bood.userpage.ShowUserNews;
+
+public class AdminChangNews extends IndexAdminPage {
+	JdbcTemplate jt = new JdbcTemplate(JDBCUtils.getDataSource());
+
 	Font a = new Font("楷体", Font.BOLD, 30);
 	Font d = new Font("楷体", Font.BOLD, 25);
 
 	JLabel system = new JLabel("个人信息修改");
-	
+
 	JLabel usernamela = new JLabel("用户名");
 	JLabel passwordla = new JLabel("密码");
 	JLabel name = new JLabel("姓名");
 	JLabel sex = new JLabel("性别");
 	JLabel age = new JLabel("年龄");
 	JLabel boodtype = new JLabel("血型");
-	
+
 	JTextField usernames = new JTextField();
 	JPasswordField password = new JPasswordField();
 	JTextField namela = new JTextField();
@@ -41,27 +47,26 @@ public class ChangeUserNews extends IndexUserPage {
 	JButton back = new JButton("取消更改");
 
 	User user = new User();
-	
-	
-	public ChangeUserNews(String username) {
+
+	public AdminChangNews(String username) {
 		super(username);
-		changeUserNewsPage(username);
-		
+		adminChangNewsPage(username);
 	}
 
-	private void changeUserNewsPage(String username) {
-		
-		//临时改一下
+	private void adminChangNewsPage(String username) {
+
+		// 临时改一下
 		jf.setBounds(350, 20, 650, 700);
-		
+
 		system.setBounds(150, 80, 300, 40);
 		system.setFont(a);
-		
-		back.setBounds(450, 80, 140,25);
-		back.setFont(d);;
+
+		back.setBounds(450, 80, 140, 25);
+		back.setFont(d);
+		;
 		jf.add(back);
-		
-		//左边文本
+
+		// 左边文本
 		usernamela.setBounds(120, 150, 100, 30);
 		usernamela.setFont(d);
 		passwordla.setBounds(120, 210, 100, 30);
@@ -74,7 +79,7 @@ public class ChangeUserNews extends IndexUserPage {
 		age.setFont(d);
 		boodtype.setBounds(120, 450, 100, 30);
 		boodtype.setFont(d);
-		
+
 		// 输入框
 		usernames.setBounds(250, 150, 200, 30);
 		usernames.setFont(d);
@@ -96,12 +101,13 @@ public class ChangeUserNews extends IndexUserPage {
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(radioButton1);
 		bg.add(radioButton2);
-		
+
 		// 按钮
 		changeNews.setBounds(120, 500, 330, 50);
 		changeNews.setFont(d);
 		
 		
+
 		jf.add(system);
 		jf.add(usernamela);
 		jf.add(passwordla);
@@ -118,23 +124,22 @@ public class ChangeUserNews extends IndexUserPage {
 		jf.add(agela);
 		jf.add(boodtypela);
 		jf.add(changeNews);
-		
+
 		back.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				jf.setVisible(false);
-				new ShowUserNews(username);
-				
+				new AdminUpdateUserNews(username);
+
 			}
 		});
-		
+
 		changeNews.addActionListener(new ActionListener() {
-			
+
 			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 
 				Boolean tf = true;
 				// 首先没填数据 提示错误
@@ -193,10 +198,10 @@ public class ChangeUserNews extends IndexUserPage {
 						JOptionPane.showMessageDialog(null, "用户名已存在", "重名警告", JOptionPane.WARNING_MESSAGE);
 					} else {
 						// 添加用户
-						if (userDao.changeSaveUser(user,username)) {
+						if (userDao.changeSaveUser(user, username)) {
 							JOptionPane.showMessageDialog(null, "信息修改成功");
 							jf.setVisible(false);
-							new ShowUserNews(user.getUsername());
+							new AdminUpdateUserNews(user.getUsername());
 
 						} else {
 							JOptionPane.showMessageDialog(null, "信息修改失败");
@@ -205,8 +210,6 @@ public class ChangeUserNews extends IndexUserPage {
 
 				}
 
-				
-				
 			}
 		});
 	}
